@@ -17,6 +17,7 @@ class Linked_list {
     }
   }
   find(key) {
+    // returns the index of the key or null if it doesn't exist
     let current = this.head;
     let index = 0;
     if (current === null) return null;

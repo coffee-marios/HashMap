@@ -59,6 +59,18 @@ class HashMap {
     let myValue = this.bucket[index_bucket].return_value(key);
     return myValue;
   }
+
+  has(key) {
+    let hashed_key = this.hash(key);
+    let index_bucket = hashed_key % 16;
+    if (this.bucket[index_bucket] === undefined) {
+      return false;
+    }
+
+    let keyExists = this.bucket[index_bucket].find(key);
+
+    return keyExists === null ? false : true;
+  }
 }
 
 let test = new HashMap();
@@ -74,3 +86,7 @@ console.log(test.set("carla", "09"));
 console.log(test.get("marios"));
 console.log(test.get("carlos"));
 console.log(test.get("carla"));
+console.log(test.has("carla"));
+console.log(test.has("carlos"));
+console.log(test.has("maria"));
+console.log(test.has("bruno"));
