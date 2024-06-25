@@ -58,6 +58,22 @@ class Linked_list {
       ind++;
     }
   }
+  return_value(key) {
+    let current = this.head;
+    let index = 0;
+    if (current === null) return null;
+
+    let myKey = Object.keys(current.value);
+
+    if (myKey[0] === key) return current.value[key];
+    while (current.nextNode !== null) {
+      myKey = Object.keys(current.nextNode.value);
+      if (myKey[0] === key) return current.value[key];
+      //  if (current.nextNode.value === value) return index;
+      current = current.nextNode;
+    }
+    return null;
+  }
 }
 
 class Node {

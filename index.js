@@ -43,8 +43,21 @@ class HashMap {
     const _key = key;
     pair[_key] = value;
     this.bucket[index_bucket].append(pair);
-    console.log("W: ", this.bucket[index_bucket]);
+    //console.log("W: ", this.bucket[index_bucket]);
     return true; // this.bucket;
+  }
+
+  get(key) {
+    let hashed_key = this.hash(key);
+    let index_bucket = hashed_key % 16;
+    if (
+      (this.bucket[index_bucket] === undefined) |
+      (index_bucket > this.capacity)
+    ) {
+      return null;
+    }
+    let myValue = this.bucket[index_bucket].return_value(key);
+    return myValue;
   }
 }
 
@@ -52,9 +65,12 @@ let test = new HashMap();
 console.clear();
 //console.log(test.hash("marios"));
 console.log(test.set("marios", "boss"));
-// console.log(test.set("marios", "09"));
-console.log(test.set("carlos", "boss"));
+
+console.log(test.set("carlos", "rics"));
 console.log(test.set("carla", "09"));
 // console.log(test.set("maria", "abosgs"));
 // console.log("Bucket: ", test.bucket);
-console.log(test.entries);
+// console.log(test.entries);
+console.log(test.get("marios"));
+console.log(test.get("carlos"));
+console.log(test.get("carla"));
