@@ -75,12 +75,23 @@ class Linked_list {
     }
     return null;
   }
+  size() {
+    let current = this.head;
+    // console.log("Current: ", current);
+    if (current === null || current === undefined) return 0;
+    let listLength = 1;
+    while (current.nextNode !== null) {
+      current = current.nextNode;
+      listLength += 1;
+    }
+    return listLength;
+  }
 }
 
 class Node {
   constructor(value) {
     this.value = value;
-    this.nextValue = null;
+    this.nextNode = null;
   }
 }
 

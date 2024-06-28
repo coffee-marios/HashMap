@@ -84,24 +84,42 @@ class HashMap {
     this.bucket[index_bucket].removeAt(keyExists);
     return true;
   }
+  length() {
+    let number_keys = 0;
+    let more_keys;
+    // console.log("Length: ", size_bucket);
+    for (let i = 0; i < this.capacity; i++) {
+      if (this.bucket[i] === undefined) continue;
+      more_keys = this.bucket[i].size();
+      number_keys += more_keys;
+    }
+    //console.log(this.bucket);
+    return number_keys;
+  }
 }
 
 let test = new HashMap();
 console.clear();
 //console.log(test.hash("marios"));
-console.log(test.set("marios", "boss"));
+console.log(test.set("m", "boss-1"));
+console.log(test.set("ma", "boss-2"));
+console.log(test.set("mar", "boss-3"));
+console.log(test.set("mari", "boss-4"));
+console.log(test.set("mario", "boss-5"));
+console.log(test.set("marios", "boss-6"));
 
-console.log(test.set("carlos", "rics"));
-console.log(test.set("carla", "09"));
+//console.log(test.set("carlos", "rics"));
+//console.log(test.set("carla", "09"));
 // console.log(test.set("maria", "abosgs"));
 // console.log("Bucket: ", test.bucket);
 // console.log(test.entries);
-console.log(test.get("marios"));
-console.log(test.get("carlos"));
-console.log(test.get("carla"));
-console.log(test.has("carla"));
-console.log(test.has("carlos"));
-console.log(test.has("maria"));
-console.log(test.has("bruno"));
-console.log(test.remove("carla"));
-console.log(test.get("carla"));
+// console.log(test.get("marios"));
+// console.log(test.get("carlos"));
+// console.log(test.get("carla"));
+// console.log(test.has("carla"));
+// console.log(test.has("carlos"));
+// console.log(test.has("maria"));
+// console.log(test.has("bruno"));
+// console.log(test.remove("carla"));
+// console.log(test.get("carla"));
+console.log(test.length());
