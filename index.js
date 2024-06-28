@@ -99,6 +99,9 @@ class HashMap {
     //console.log(this.bucket);
     return number_keys;
   }
+  clear() {
+    this.bucket = [];
+  }
 }
 
 let test = new HashMap();
@@ -111,6 +114,18 @@ console.log(test.set("marios", "boss-6"));
 console.log(test.set("ama", "aboss-2"));
 console.log(test.set("amario", "aboss-5"));
 console.log(test.set("amarios", "aboss-6"));
+
+console.log("ma", test.get("ma"));
+console.log("mario", test.get("mario"));
+console.log("marios", test.get("marios"));
+console.log("ama", test.get("ama"));
+console.log("amario", test.get("amario"));
+console.log("amarios", test.get("amarios"));
+console.log(test.has("mario"));
+
+console.log(test.length());
+
+test.clear();
 
 console.log("ma", test.get("ma"));
 console.log("mario", test.get("mario"));
