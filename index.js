@@ -71,6 +71,19 @@ class HashMap {
 
     return keyExists === null ? false : true;
   }
+
+  remove(key) {
+    let hashed_key = this.hash(key);
+    let index_bucket = hashed_key % 16;
+    if (this.bucket[index_bucket] === undefined) {
+      return false;
+    }
+    let keyExists = this.bucket[index_bucket].find(key);
+
+    if (keyExists === null) return false;
+    this.bucket[index_bucket].removeAt(keyExists);
+    return true;
+  }
 }
 
 let test = new HashMap();
@@ -90,3 +103,5 @@ console.log(test.has("carla"));
 console.log(test.has("carlos"));
 console.log(test.has("maria"));
 console.log(test.has("bruno"));
+console.log(test.remove("carla"));
+console.log(test.get("carla"));
