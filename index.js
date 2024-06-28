@@ -22,13 +22,16 @@ class HashMap {
   set(key, value) {
     let hashed_key = this.hash(key);
     let index_bucket = hashed_key % 16;
-    console.log(index_bucket);
+
+    console.log("KEY", key);
+    console.log("HASH KEY", hashed_key);
+    console.log("INDEX BUCKET", index_bucket);
 
     if (this.bucket[index_bucket] === undefined) {
       this.bucket[index_bucket] = new Linked_list();
       this.entries++;
       let critical_size = this.capacity * this.load_factor;
-      console.log(["test", this.entries, critical_size]);
+      //console.log(["test", this.entries, critical_size]);
       if (critical_size < this.entries) {
         return ["We need to grow the capacity", this.entries];
       }
@@ -43,8 +46,8 @@ class HashMap {
     const _key = key;
     pair[_key] = value;
     this.bucket[index_bucket].append(pair);
-    //console.log("W: ", this.bucket[index_bucket]);
-    return true; // this.bucket;
+    console.log("W: ", this.bucket[index_bucket]);
+    return; // this.bucket;
   }
 
   get(key) {
@@ -100,26 +103,21 @@ class HashMap {
 
 let test = new HashMap();
 console.clear();
-//console.log(test.hash("marios"));
-console.log(test.set("m", "boss-1"));
+// console.log(test.hash("m"));
+
 console.log(test.set("ma", "boss-2"));
-console.log(test.set("mar", "boss-3"));
-console.log(test.set("mari", "boss-4"));
 console.log(test.set("mario", "boss-5"));
 console.log(test.set("marios", "boss-6"));
+console.log(test.set("ama", "aboss-2"));
+console.log(test.set("amario", "aboss-5"));
+console.log(test.set("amarios", "aboss-6"));
 
-//console.log(test.set("carlos", "rics"));
-//console.log(test.set("carla", "09"));
-// console.log(test.set("maria", "abosgs"));
-// console.log("Bucket: ", test.bucket);
-// console.log(test.entries);
-// console.log(test.get("marios"));
-// console.log(test.get("carlos"));
-// console.log(test.get("carla"));
-// console.log(test.has("carla"));
-// console.log(test.has("carlos"));
-// console.log(test.has("maria"));
-// console.log(test.has("bruno"));
-// console.log(test.remove("carla"));
-// console.log(test.get("carla"));
+console.log("ma", test.get("ma"));
+console.log("mario", test.get("mario"));
+console.log("marios", test.get("marios"));
+console.log("ama", test.get("ama"));
+console.log("amario", test.get("amario"));
+console.log("amarios", test.get("amarios"));
+console.log(test.has("mario"));
+
 console.log(test.length());
