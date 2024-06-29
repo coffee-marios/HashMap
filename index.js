@@ -28,9 +28,9 @@ class HashMap {
   set(key, value) {
     let index_bucket = this.#get_bucket(key);
 
-    console.log("KEY", key);
+    // console.log("KEY", key);
 
-    console.log("INDEX BUCKET", index_bucket);
+    // console.log("INDEX BUCKET", index_bucket);
 
     if (this.bucket[index_bucket] === undefined) {
       this.bucket[index_bucket] = new Linked_list();
@@ -50,7 +50,7 @@ class HashMap {
     const _key = key;
     pair[_key] = value;
     this.bucket[index_bucket].append(pair);
-    console.log("W: ", this.bucket[index_bucket]);
+    // console.log("W: ", this.bucket[index_bucket]);
     return; // this.bucket;
   }
 
@@ -114,7 +114,7 @@ class HashMap {
     for (let i = 0; i < size; i++) {
       if (this.bucket[i] !== undefined) {
         bucket_keys = this.bucket[i].linked_keys();
-        console.log("buckey keys ", bucket_keys);
+        //console.log("buckey keys ", bucket_keys);
         all_keys = all_keys.concat(bucket_keys);
       }
     }
@@ -150,40 +150,4 @@ class HashMap {
   }
 }
 
-let test = new HashMap();
-console.clear();
-// console.log(test.hash("m"));
-
-console.log(test.set("ma", "boss-2"));
-console.log(test.set("mario", "boss-5"));
-console.log(test.set("marios", "boss-6"));
-console.log(test.set("ama", "aboss-2"));
-console.log(test.set("amario", "aboss-5"));
-console.log(test.set("amarios", "aboss-6"));
-
-console.log("ma", test.get("ma"));
-console.log("mario", test.get("mario"));
-console.log("marios", test.get("marios"));
-console.log("ama", test.get("ama"));
-console.log("amario", test.get("amario"));
-console.log("amarios", test.get("amarios"));
-console.log(test.has("mario"));
-
-console.log(test.length());
-console.log(test.keys());
-console.log(test.values());
-
-console.log(test.entries());
-
-test.clear();
-
-console.log("ma", test.get("ma"));
-console.log("mario", test.get("mario"));
-console.log("marios", test.get("marios"));
-console.log("ama", test.get("ama"));
-console.log("amario", test.get("amario"));
-console.log("amarios", test.get("amarios"));
-console.log(test.has("mario"));
-console.log(test.keys());
-
-console.log(test.length());
+export { HashMap };
