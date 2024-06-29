@@ -102,6 +102,23 @@ class Linked_list {
     }
     return one_bucket_keys;
   }
+
+  linked_entries() {
+    let one_bucket_entries = [];
+    let current = this.head;
+    let arr_entries;
+    let myKey;
+    if (current !== null) {
+      arr_entries = Object.entries(current.value)[0];
+      one_bucket_entries.push(arr_entries);
+    }
+    while (current.nextNode !== null) {
+      current = current.nextNode;
+      arr_entries = Object.entries(current.value)[0];
+      one_bucket_entries.push(arr_entries);
+    }
+    return one_bucket_entries;
+  }
 }
 
 class Node {

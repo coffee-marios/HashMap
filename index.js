@@ -4,7 +4,7 @@ class HashMap {
   constructor() {
     this.capacity = 16;
     this.load_factor = 0.8;
-    this.entries = 0;
+    this.number_entries = 0;
     this.bucket = [];
   }
 
@@ -34,11 +34,11 @@ class HashMap {
 
     if (this.bucket[index_bucket] === undefined) {
       this.bucket[index_bucket] = new Linked_list();
-      this.entries++;
+      this.number_entries++;
       let critical_size = this.capacity * this.load_factor;
       //console.log(["test", this.entries, critical_size]);
-      if (critical_size < this.entries) {
-        return ["We need to grow the capacity", this.entries];
+      if (critical_size < this.number_entries) {
+        return ["We need to grow the capacity", this.number_entries];
       }
     }
 
@@ -120,6 +120,19 @@ class HashMap {
     }
     return all_keys;
   }
+  entries() {
+    let all_entries = [];
+    let bucket_entries;
+
+    let size = this.bucket.length;
+    for (let i = 0; i < size; i++) {
+      if (this.bucket[i] !== undefined) {
+        bucket_entries = this.bucket[i].linked_entries();
+        all_entries = all_entries.concat(bucket_entries);
+      }
+    }
+    return all_entries;
+  }
 }
 
 let test = new HashMap();
@@ -143,6 +156,7 @@ console.log(test.has("mario"));
 
 console.log(test.length());
 console.log(test.keys());
+console.log(test.entries());
 
 test.clear();
 
