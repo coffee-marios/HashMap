@@ -87,6 +87,21 @@ class Linked_list {
     }
     return listLength;
   }
+  linked_keys() {
+    let one_bucket_keys = [];
+    let current = this.head;
+    let myKey;
+    if (current !== null) {
+      myKey = Object.keys(current.value);
+      one_bucket_keys.push(myKey[0]);
+    }
+    while (current.nextNode !== null) {
+      current = current.nextNode;
+      myKey = Object.keys(current.value);
+      one_bucket_keys.push(myKey[0]);
+    }
+    return one_bucket_keys;
+  }
 }
 
 class Node {

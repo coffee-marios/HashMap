@@ -26,12 +26,10 @@ class HashMap {
     return hashCode;
   }
   set(key, value) {
-    // let hashed_key = this.hash(key);
-    // let index_bucket = hashed_key % 16;
     let index_bucket = this.#get_bucket(key);
 
     console.log("KEY", key);
-    //console.log("HASH KEY", hashed_key);
+
     console.log("INDEX BUCKET", index_bucket);
 
     if (this.bucket[index_bucket] === undefined) {
@@ -47,7 +45,6 @@ class HashMap {
     let keyExists = this.bucket[index_bucket].find(key);
     if (keyExists !== null) {
       this.bucket[index_bucket].removeAt(keyExists);
-      // return this.bucket[index_bucket];
     }
     const pair = {};
     const _key = key;
@@ -73,9 +70,8 @@ class HashMap {
   }
 
   has(key) {
-    // let hashed_key = this.hash(key);
-    // let index_bucket = hashed_key % 16;
     let index_bucket = this.#get_bucket(key);
+
     if (this.bucket[index_bucket] === undefined) {
       return false;
     }
@@ -86,8 +82,6 @@ class HashMap {
   }
 
   remove(key) {
-    // let hashed_key = this.hash(key);
-    // let index_bucket = hashed_key % 16;
     let index_bucket = this.#get_bucket(key);
     if (this.bucket[index_bucket] === undefined) {
       return false;
@@ -113,7 +107,19 @@ class HashMap {
   clear() {
     this.bucket = [];
   }
-  keys() {}
+  keys() {
+    let all_keys = [];
+    let bucket_keys;
+    let size = this.bucket.length;
+    for (let i = 0; i < size; i++) {
+      if (this.bucket[i] !== undefined) {
+        bucket_keys = this.bucket[i].linked_keys();
+        console.log("buckey keys ", bucket_keys);
+        all_keys = all_keys.concat(bucket_keys);
+      }
+    }
+    return all_keys;
+  }
 }
 
 let test = new HashMap();
@@ -136,6 +142,7 @@ console.log("amarios", test.get("amarios"));
 console.log(test.has("mario"));
 
 console.log(test.length());
+console.log(test.keys());
 
 test.clear();
 
@@ -146,5 +153,6 @@ console.log("ama", test.get("ama"));
 console.log("amario", test.get("amario"));
 console.log("amarios", test.get("amarios"));
 console.log(test.has("mario"));
+console.log(test.keys());
 
 console.log(test.length());
