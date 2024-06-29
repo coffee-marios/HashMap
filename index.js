@@ -8,6 +8,12 @@ class HashMap {
     this.bucket = [];
   }
 
+  #get_bucket(key) {
+    let hashed_key = this.hash(key);
+    let index_bucket = hashed_key % this.capacity;
+    return index_bucket;
+  }
+
   hash(key) {
     let hashCode = 0;
     const PRIMENUMBER = 31;
@@ -20,11 +26,12 @@ class HashMap {
     return hashCode;
   }
   set(key, value) {
-    let hashed_key = this.hash(key);
-    let index_bucket = hashed_key % 16;
+    // let hashed_key = this.hash(key);
+    // let index_bucket = hashed_key % 16;
+    let index_bucket = this.#get_bucket(key);
 
     console.log("KEY", key);
-    console.log("HASH KEY", hashed_key);
+    //console.log("HASH KEY", hashed_key);
     console.log("INDEX BUCKET", index_bucket);
 
     if (this.bucket[index_bucket] === undefined) {
@@ -51,8 +58,10 @@ class HashMap {
   }
 
   get(key) {
-    let hashed_key = this.hash(key);
-    let index_bucket = hashed_key % 16;
+    // let hashed_key = this.hash(key);
+    // let index_bucket = hashed_key % 16;
+    let index_bucket = this.#get_bucket(key);
+
     if (
       (this.bucket[index_bucket] === undefined) |
       (index_bucket > this.capacity)
@@ -64,8 +73,9 @@ class HashMap {
   }
 
   has(key) {
-    let hashed_key = this.hash(key);
-    let index_bucket = hashed_key % 16;
+    // let hashed_key = this.hash(key);
+    // let index_bucket = hashed_key % 16;
+    let index_bucket = this.#get_bucket(key);
     if (this.bucket[index_bucket] === undefined) {
       return false;
     }
@@ -76,8 +86,9 @@ class HashMap {
   }
 
   remove(key) {
-    let hashed_key = this.hash(key);
-    let index_bucket = hashed_key % 16;
+    // let hashed_key = this.hash(key);
+    // let index_bucket = hashed_key % 16;
+    let index_bucket = this.#get_bucket(key);
     if (this.bucket[index_bucket] === undefined) {
       return false;
     }
@@ -102,6 +113,7 @@ class HashMap {
   clear() {
     this.bucket = [];
   }
+  keys() {}
 }
 
 let test = new HashMap();
