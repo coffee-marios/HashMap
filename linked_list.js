@@ -103,11 +103,27 @@ class Linked_list {
     return one_bucket_keys;
   }
 
+  linked_values() {
+    let one_bucket_values = [];
+    let current = this.head;
+    let myValue;
+    if (current !== null) {
+      myValue = Object.values(current.value);
+      one_bucket_values.push(myValue[0]);
+    }
+    while (current.nextNode !== null) {
+      current = current.nextNode;
+      myValue = Object.values(current.value);
+      one_bucket_values.push(myValue[0]);
+    }
+    return one_bucket_values;
+  }
+
   linked_entries() {
     let one_bucket_entries = [];
     let current = this.head;
     let arr_entries;
-    let myKey;
+
     if (current !== null) {
       arr_entries = Object.entries(current.value)[0];
       one_bucket_entries.push(arr_entries);

@@ -120,6 +120,21 @@ class HashMap {
     }
     return all_keys;
   }
+
+  values() {
+    let all_values = [];
+    let bucket_values;
+    let size = this.bucket.length;
+    for (let i = 0; i < size; i++) {
+      if (this.bucket[i] !== undefined) {
+        bucket_values = this.bucket[i].linked_values();
+        //console.log("buckey keys ", bucket_keys);
+        all_values = all_values.concat(bucket_values);
+      }
+    }
+    return all_values;
+  }
+
   entries() {
     let all_entries = [];
     let bucket_entries;
@@ -156,6 +171,8 @@ console.log(test.has("mario"));
 
 console.log(test.length());
 console.log(test.keys());
+console.log(test.values());
+
 console.log(test.entries());
 
 test.clear();
