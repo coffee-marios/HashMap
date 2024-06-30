@@ -91,10 +91,12 @@ class Linked_list {
     let one_bucket_keys = [];
     let current = this.head;
     let myKey;
+    if (current === null) return one_bucket_keys;
     if (current !== null) {
       myKey = Object.keys(current.value);
       one_bucket_keys.push(myKey[0]);
     }
+
     while (current.nextNode !== null) {
       current = current.nextNode;
       myKey = Object.keys(current.value);
@@ -107,6 +109,9 @@ class Linked_list {
     let one_bucket_values = [];
     let current = this.head;
     let myValue;
+
+    if (current === null) return one_bucket_values;
+
     if (current !== null) {
       myValue = Object.values(current.value);
       one_bucket_values.push(myValue[0]);
@@ -123,6 +128,8 @@ class Linked_list {
     let one_bucket_entries = [];
     let current = this.head;
     let arr_entries;
+
+    if (current === null) return one_bucket_entries;
 
     if (current !== null) {
       arr_entries = Object.entries(current.value)[0];

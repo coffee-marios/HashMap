@@ -30,3 +30,4 @@ console.log(test.length());
 
 test.set("moon", "silver");
 console.log(test.length());
+test.set("moon90", "silver");

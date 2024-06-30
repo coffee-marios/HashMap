@@ -3,7 +3,7 @@ import { Linked_list } from "./linked_list.js";
 class HashMap {
   constructor() {
     this.capacity = 16;
-    this.load_factor = 0.8;
+    this.load_factor = 0.75;
     this.number_entries = 0;
     this.bucket = [];
   }
@@ -12,6 +12,15 @@ class HashMap {
     let hashed_key = this.hash(key);
     let index_bucket = hashed_key % this.capacity;
     return index_bucket;
+  }
+  #expand_buckets() {
+    let my_entries = this.entries();
+    this.capacity = 2 * this.capacity;
+    console.log("e", my_entries);
+    this.clear();
+    for (let i = 0; i < my_entries.length; i++) {
+      this.set(my_entries[i][0], my_entries[i][1]);
+    }
   }
 
   hash(key) {
@@ -26,32 +35,30 @@ class HashMap {
     return hashCode;
   }
   set(key, value) {
+    let critical_size = this.capacity * this.load_factor;
+    //console.log(["test", this.number_entries, critical_size]);
+    if (critical_size < this.number_entries) {
+      this.#expand_buckets();
+    }
     let index_bucket = this.#get_bucket(key);
-
-    // console.log("KEY", key);
-
-    // console.log("INDEX BUCKET", index_bucket);
 
     if (this.bucket[index_bucket] === undefined) {
       this.bucket[index_bucket] = new Linked_list();
-      this.number_entries++;
-      let critical_size = this.capacity * this.load_factor;
-      //console.log(["test", this.entries, critical_size]);
-      if (critical_size < this.number_entries) {
-        return ["We need to grow the capacity", this.number_entries];
-      }
     }
 
     let keyExists = this.bucket[index_bucket].find(key);
     if (keyExists !== null) {
       this.bucket[index_bucket].removeAt(keyExists);
+    } else {
+      this.number_entries++;
+      console.log("NUMBER: ", this.number_entries);
     }
+
     const pair = {};
     const _key = key;
     pair[_key] = value;
     this.bucket[index_bucket].append(pair);
     // console.log("W: ", this.bucket[index_bucket]);
-    return; // this.bucket;
   }
 
   get(key) {
@@ -106,6 +113,7 @@ class HashMap {
   }
   clear() {
     this.bucket = [];
+    this.number_entries = 0;
   }
   keys() {
     let all_keys = [];
