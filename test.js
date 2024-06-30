@@ -27,7 +27,11 @@ test.set("carrot", "2 orange");
 console.log(test.keys());
 console.log(test.values());
 console.log(test.length());
+console.log(test.describe());
 
 test.set("moon", "silver");
+console.log(test.describe());
+
 console.log(test.length());
 test.set("moon90", "silver");
+console.log(test.describe());

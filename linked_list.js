@@ -78,7 +78,7 @@ class Linked_list {
   }
   size() {
     let current = this.head;
-    // console.log("Current: ", current);
+
     if (current === null || current === undefined) return 0;
     let listLength = 1;
     while (current.nextNode !== null) {

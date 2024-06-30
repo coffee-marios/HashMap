@@ -16,11 +16,30 @@ class HashMap {
   #expand_buckets() {
     let my_entries = this.entries();
     this.capacity = 2 * this.capacity;
-    console.log("e", my_entries);
+
     this.clear();
     for (let i = 0; i < my_entries.length; i++) {
       this.set(my_entries[i][0], my_entries[i][1]);
     }
+  }
+
+  describe() {
+    let empty_buckets = 0;
+    let active_buckets = 0;
+    let each_bucket = 0;
+    let critical_size = this.capacity * this.load_factor;
+    for (let i = 0; i < this.capacity; i++) {
+      if (this.bucket[i] === undefined) {
+        empty_buckets++;
+        continue;
+      }
+      each_bucket = this.bucket[i].size();
+      console.log(`Bucket ${i}: ${each_bucket}`);
+      //number_keys += more_keys;
+      active_buckets++;
+    }
+
+    return `\nEmpty buckets: ${empty_buckets}\nActive buckets ${active_buckets}\nEntries: ${this.number_entries}\nCritical size: ${critical_size}\n`;
   }
 
   hash(key) {
@@ -36,10 +55,7 @@ class HashMap {
   }
   set(key, value) {
     let critical_size = this.capacity * this.load_factor;
-    //console.log(["test", this.number_entries, critical_size]);
-    if (critical_size < this.number_entries) {
-      this.#expand_buckets();
-    }
+
     let index_bucket = this.#get_bucket(key);
 
     if (this.bucket[index_bucket] === undefined) {
@@ -51,14 +67,15 @@ class HashMap {
       this.bucket[index_bucket].removeAt(keyExists);
     } else {
       this.number_entries++;
-      console.log("NUMBER: ", this.number_entries);
     }
 
     const pair = {};
     const _key = key;
     pair[_key] = value;
     this.bucket[index_bucket].append(pair);
-    // console.log("W: ", this.bucket[index_bucket]);
+    if (critical_size < this.number_entries) {
+      this.#expand_buckets();
+    }
   }
 
   get(key) {
@@ -108,7 +125,7 @@ class HashMap {
       more_keys = this.bucket[i].size();
       number_keys += more_keys;
     }
-    //console.log(this.bucket);
+
     return number_keys;
   }
   clear() {
