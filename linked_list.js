@@ -30,7 +30,7 @@ class Linked_list {
       index += 1;
       myKey = Object.keys(current.nextNode.value);
       if (myKey[0] === key) return index;
-      //  if (current.nextNode.value === value) return index;
+
       current = current.nextNode;
     }
     return null;

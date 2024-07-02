@@ -36,7 +36,7 @@ class HashMap {
       }
       each_bucket = this.bucket[i].size();
       console.log(`Bucket ${i}: ${each_bucket}`);
-      //number_keys += more_keys;
+
       active_buckets++;
     }
 
