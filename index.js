@@ -24,6 +24,7 @@ class HashMap {
   }
 
   describe() {
+    console.log("\nHash map:\n");
     let empty_buckets = 0;
     let active_buckets = 0;
     let each_bucket = 0;
