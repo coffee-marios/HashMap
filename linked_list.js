@@ -24,12 +24,18 @@ class Linked_list {
 
     let myKey = Object.keys(current.value);
 
-    if (myKey[0] === key) return 0;
-
-    while (current.nextNode !== null) {
-      index += 1;
-      myKey = Object.keys(current.nextNode.value);
+    while (current !== null) {
+      /*  console.log(
+        "current",
+        current,
+        "\nindex:",
+        index,
+        "\nvalue:",
+        current.value); */
+      myKey = Object.keys(current.value);
       if (myKey[0] === key) return index;
+
+      index += 1;
 
       current = current.nextNode;
     }
@@ -41,21 +47,15 @@ class Linked_list {
       return;
     }
 
-    let ind = 0;
+    let ind = 1;
     let current = this.head;
 
-    while (ind < index) {
-      if (ind === index - 1) {
-        if (current.nextNode.nextNode) {
-          current.nextNode = current.nextNode.nextNode;
-        } else {
-          current.nextNode = null;
-        }
-        break;
-      } else {
-        current = current.nextNode;
+    while (current.nextNode) {
+      if (ind === index) {
+        current.nextNode = current.nextNode.nextNode;
+        return;
       }
-
+      current = current.nextNode;
       ind++;
     }
   }

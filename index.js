@@ -111,10 +111,14 @@ class HashMap {
     if (this.bucket[index_bucket] === undefined) {
       return false;
     }
+
     let keyExists = this.bucket[index_bucket].find(key);
+    //console.log(this.bucket[index_bucket]);
+    //console.log("key:", keyExists);
 
     if (keyExists === null) return false;
     this.bucket[index_bucket].removeAt(keyExists);
+    //console.log(this.bucket[index_bucket]);
     return true;
   }
   length() {
