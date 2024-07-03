@@ -8,15 +8,17 @@ A hash table or hash map, is a data structure that allows you to map keys to val
 
 ## Methods
 
+set(key, value) -> assigns the pair key/value to one of the buckets; it increases the number of buckets after the entries reach a critical point.
+
 get(key) -> returns the value or null if the key doesn't exist.
 
 has(key) -> returns true or false based on whether or not the key is in the hash map.
 
-remove(key) -> returns true if it removes the key or false if it doesn't find the key.
+remove(key) -> returns true if it removes the key or false if it doesn't find the key; it doesn't affect the number of buckets.
 
 length() -> returns the number of entries.
 
-clear() -> removes all the entries in the hash map.
+clear() -> removes all the entries in the hash map; it sets the number of buckets to 16.
 
 keys() -> returns all the keys inside the hash map.
 
