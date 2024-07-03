@@ -16,8 +16,8 @@ class HashMap {
   #expand_buckets() {
     let my_entries = this.entries();
     this.capacity = 2 * this.capacity;
+    this.clear(true);
 
-    this.clear();
     for (let i = 0; i < my_entries.length; i++) {
       this.set(my_entries[i][0], my_entries[i][1]);
     }
@@ -113,18 +113,14 @@ class HashMap {
     }
 
     let keyExists = this.bucket[index_bucket].find(key);
-    //console.log(this.bucket[index_bucket]);
-    //console.log("key:", keyExists);
 
     if (keyExists === null) return false;
     this.bucket[index_bucket].removeAt(keyExists);
-    //console.log(this.bucket[index_bucket]);
     return true;
   }
   length() {
     let number_keys = 0;
     let more_keys;
-    // console.log("Length: ", size_bucket);
     for (let i = 0; i < this.capacity; i++) {
       if (this.bucket[i] === undefined) continue;
       more_keys = this.bucket[i].size();
@@ -133,9 +129,12 @@ class HashMap {
 
     return number_keys;
   }
-  clear() {
+  clear(expand = false) {
     this.bucket = [];
     this.number_entries = 0;
+    if (!expand) {
+      this.capacity = 16;
+    }
   }
   keys() {
     let all_keys = [];

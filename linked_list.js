@@ -25,13 +25,6 @@ class Linked_list {
     let myKey = Object.keys(current.value);
 
     while (current !== null) {
-      /*  console.log(
-        "current",
-        current,
-        "\nindex:",
-        index,
-        "\nvalue:",
-        current.value); */
       myKey = Object.keys(current.value);
       if (myKey[0] === key) return index;
 
